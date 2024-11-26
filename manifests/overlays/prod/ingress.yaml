@@ -6,9 +6,8 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
-  ingressClassName: nginx
   rules:
-  - host: example.com
+  - host: sample.ce-82231598-sa.kubepia.net
     http:
       paths:
       - path: /
@@ -17,5 +16,5 @@ spec:
           service:
             name: my-app-service
             port:
-              number: 80
+              number: 8080
 
