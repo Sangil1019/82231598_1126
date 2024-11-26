@@ -1,0 +1,22 @@
+# Dockerfile.acr
+FROM ce82231598acr.azurecr.io/openjdk:17-slim
+
+WORKDIR /app
+
+# Install Maven
+RUN apt-get update && apt-get install -y maven
+
+# Copy pom.xml for dependency download
+COPY pom.xml ./
+
+# Pre-download dependencies
+RUN mvn dependency:go-offline
+
+# Copy application source code
+COPY src ./src
+
+# Expose the application port
+EXPOSE 8080
+
+# Run the Spring Boot application
+CMD ["mvn", "spring-boot:run"]
