@@ -14,7 +14,7 @@ spec:
         app: my-app
     spec:
       imagePullSecrets:
-      - name: acr-secret
+      - name: acr-secret1
       containers:
       - name: my-app
         image: ce82231598acr.azurecr.io/my-app:latest
