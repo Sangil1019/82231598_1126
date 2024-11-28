@@ -28,3 +28,4 @@ jobs:
       run: |
         docker push ce82231598acr.azurecr.io/my-app:${{ github.sha }}
 
+
