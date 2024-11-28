@@ -17,7 +17,7 @@ spec:
       - name: acr-secret
       containers:
       - name: my-app
-        image: cepgbaseacr.azurecr.io/my-app:latest
+        image: ce82231598acr.azurecr.io/my-app:latest
         ports:
         - containerPort: 8080
         envFrom:
