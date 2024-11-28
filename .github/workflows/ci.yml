@@ -43,7 +43,7 @@ jobs:
 
     - name: Build & Tag Docker Image
       run: |
-        docker build -f Dockerfile-maven -t ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} .
+        docker build -f Dockerfile -t ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} .
         docker tag ${{ secrets.BASEACR_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }} ce82231598acr.azurecr.io/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
     - name: ACR Login to TARGET ACR
