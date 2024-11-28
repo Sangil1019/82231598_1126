@@ -66,8 +66,8 @@ jobs:
 
     - name: Commit Updated Files
       run: |
-        git config --global user.email "github-actions@github.com"
-        git config --global user.name "github-actions"
+        git config --global user.email "sangil.jo@kt.com"
+        git config --global user.name "sangil1019"
         git add manifests
         git commit -m "Update image to version ${{ steps.gen-version.outputs.VERSION }}"
         git push origin main
