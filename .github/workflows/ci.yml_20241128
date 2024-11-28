@@ -1,0 +1,30 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Log in to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ce82231598acr.azurecr.io
+        username: ${{ secrets.AZURE_ACR_USERNAME_82231598 }}
+        password: ${{ secrets.AZURE_ACR_PASSWORD_82231598 }}
+
+    - name: Build Docker Image
+      run: |
+        docker build -f Dockerfile.acr -t ce82231598acr.azurecr.io/my-app:${{ github.sha }} .
+
+    - name: Push Docker Image to ACR
+      run: |
+        docker push ce82231598acr.azurecr.io/my-app:${{ github.sha }}
+
