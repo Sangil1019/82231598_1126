@@ -1,8 +1,8 @@
-FROM cepgbaseacr.azurecr.io/docker.io/openjdk:17-slim
+FROM ce82231598acr.azurecr.io/docker.io/openjdk:17-slim
 
 WORKDIR /app
 
-RUN apt-get update && apt-get install -y maven
+RUN apt-get update && apt-get install -y --no-install-recommends maven
 
 COPY pom.xml ./
 
