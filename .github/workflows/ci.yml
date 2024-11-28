@@ -25,6 +25,7 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
@@ -52,17 +53,18 @@ jobs:
         login-server: ce82231598acr.azurecr.io
         username: ${{ secrets.AZURE_ACR_USERNAME_82231598 }}
         password: ${{ secrets.AZURE_ACR_PASSWORD_82231598 }}
+        
     - name: Push Docker Image
       run: |
         docker push ce82231598acr.azurecr.io/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
 
     - name: Setup Kustomize
       uses: imranismail/setup-kustomize@v1
+
     - name: Update Kubernetes Resources
       run: |
         cd manifests/overlays/prod
         kustomize edit set image ce82231598acr.azurecr.io/${{ env.IMAGE_NAME }}:${{ steps.gen-version.outputs.VERSION }}
-        cat kustomization.yaml
 
     - name: Commit Updated Files
       run: |
@@ -71,3 +73,4 @@ jobs:
         git add manifests
         git commit -m "Update image to version ${{ steps.gen-version.outputs.VERSION }}"
         git push origin main
+
