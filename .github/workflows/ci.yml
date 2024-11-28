@@ -71,3 +71,4 @@ jobs:
         git add manifests
         git commit -m "Update image to version ${{ steps.gen-version.outputs.VERSION }}"
         git push origin main
+
